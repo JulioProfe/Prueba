@@ -35,7 +35,7 @@ public class Inicio extends AppCompatActivity implements Observer, SensorEventLi
     public void onSensorChanged(SensorEvent sensorEvent) {
         float valores = sensorEvent.values[0];
 
-        if (valores < -2){
+        if (valores < -2 || valores > 2){
             Intent jugarIn = new Intent(Inicio.this, Registro.class);
             startActivity(jugarIn);
         }

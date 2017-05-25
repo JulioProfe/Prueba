@@ -9,7 +9,12 @@ import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Instrucciones extends AppCompatActivity implements SensorEventListener{
+public class Instrucciones extends AppCompatActivity implements SensorEventListener {
+
+    private static final float SHAKE_THRESHOLD = 1.1f;
+    private static final int SHAKE_WAIT_TIME_MS = 250;
+    private long mShakeTime = 0;
+
     private SensorManager sensorManager;
     private Sensor acele;
 
@@ -26,18 +31,45 @@ public class Instrucciones extends AppCompatActivity implements SensorEventListe
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        float valores = sensorEvent.values[0];
+//        float valores = sensorEvent.values[0];
+//
+//        if (valores <= -2){
+//            Intent jugarIn = new Intent(Instrucciones.this, Interaccion.class);
+//            startActivity(jugarIn);
+//        }
 
-        if (valores < -2 || valores > 2){
-            Intent jugarIn = new Intent(Instrucciones.this, Interaccion.class);
-            startActivity(jugarIn);
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            detectShake(sensorEvent);
+        }
+    }
+
+    private void detectShake(SensorEvent event) {
+        long now = System.currentTimeMillis();
+
+        if ((now - mShakeTime) > SHAKE_WAIT_TIME_MS) {
+            mShakeTime = now;
+
+            float gX = event.values[0] / SensorManager.GRAVITY_EARTH;
+            float gY = event.values[1] / SensorManager.GRAVITY_EARTH;
+            float gZ = event.values[2] / SensorManager.GRAVITY_EARTH;
+
+            // gForce will be close to 1 when there is no movement
+            double gForce = Math.sqrt(gX * gX + gY * gY + gZ * gZ);
+
+
+            // Change background color if gForce exceeds threshold;
+            // otherwise, reset the color
+            if (gForce > SHAKE_THRESHOLD) {
+                Intent jugarIn = new Intent(Instrucciones.this, Interaccion.class);
+                startActivity(jugarIn);
+            }
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, acele, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, acele, SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override

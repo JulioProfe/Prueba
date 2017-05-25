@@ -21,7 +21,7 @@
         <activity android:name=".Registro" />
         <activity android:name=".Seleccion" />
         <activity android:name=".Instrucciones" />
-        <activity android:name=".Interaccion"></activity>
+        <activity android:name=".Interaccion"/>
     </application>
 
 </manifest>

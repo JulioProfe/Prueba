@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Registro extends AppCompatActivity implements Observer, SensorEventListener {
+public class Registro extends AppCompatActivity implements SensorEventListener {
 
     private static final float SHAKE_THRESHOLD = 1.1f;
     private static final int SHAKE_WAIT_TIME_MS = 250;
@@ -40,7 +40,6 @@ public class Registro extends AppCompatActivity implements Observer, SensorEvent
 
         name = (EditText) findViewById(R.id.userName);
 
-        Comunicacion.getInstance().addObserver(this);
     }
 
     @Override
@@ -81,6 +80,8 @@ public class Registro extends AppCompatActivity implements Observer, SensorEvent
                 if (!nameUser.isEmpty() && nameUser!=null) {
                     Intent jugarIn = new Intent(Registro.this, Seleccion.class);
                     startActivity(jugarIn);
+                } else {
+                    aviso("Ingresa un nombre para jugar");
                 }
             }
         }
@@ -107,8 +108,5 @@ public class Registro extends AppCompatActivity implements Observer, SensorEvent
 
     }
 
-    @Override
-    public void update(Observable observable, Object o) {
 
-    }
 }

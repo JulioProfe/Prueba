@@ -8,11 +8,15 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.Observable;
 import java.util.Observer;
 
-public class Seleccion extends AppCompatActivity implements SensorEventListener, Observer {
+public class Seleccion extends AppCompatActivity implements SensorEventListener {
 
     private static final float SHAKE_THRESHOLD = 1.1f;
     private static final int SHAKE_WAIT_TIME_MS = 250;
@@ -30,7 +34,17 @@ public class Seleccion extends AppCompatActivity implements SensorEventListener,
 
         acele = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        Comunicacion.getInstance().addObserver(this);
+        GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this));
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Toast.makeText(Seleccion.this, "" + position,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -87,8 +101,5 @@ public class Seleccion extends AppCompatActivity implements SensorEventListener,
         sensorManager.unregisterListener(this);
     }
 
-    @Override
-    public void update(Observable observable, Object o) {
 
-    }
 }

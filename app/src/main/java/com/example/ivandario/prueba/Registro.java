@@ -12,12 +12,10 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Observable;
-import java.util.Observer;
 
 public class Registro extends AppCompatActivity implements SensorEventListener {
 
-    private static final float SHAKE_THRESHOLD = 1.1f;
+    private static final float SHAKE_THRESHOLD = 1.5f;
     private static final int SHAKE_WAIT_TIME_MS = 250;
     private long mShakeTime = 0;
 
@@ -44,12 +42,6 @@ public class Registro extends AppCompatActivity implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-//        float valores = sensorEvent.values[0];
-//        String nombre = name.getText().toString();
-//        if ((valores <= -2) && !nombre.isEmpty()) {
-//            Intent jugarIn = new Intent(Registro.this, Seleccion.class);
-//            startActivity(jugarIn);
-//        }
 
         String nombre = name.getText().toString();
 

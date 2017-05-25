@@ -11,7 +11,7 @@ import android.os.Bundle;
 
 public class Instrucciones extends AppCompatActivity implements SensorEventListener {
 
-    private static final float SHAKE_THRESHOLD = 1.1f;
+    private static final float SHAKE_THRESHOLD = 1.5f;
     private static final int SHAKE_WAIT_TIME_MS = 250;
     private long mShakeTime = 0;
 
@@ -31,12 +31,7 @@ public class Instrucciones extends AppCompatActivity implements SensorEventListe
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-//        float valores = sensorEvent.values[0];
-//
-//        if (valores <= -2){
-//            Intent jugarIn = new Intent(Instrucciones.this, Interaccion.class);
-//            startActivity(jugarIn);
-//        }
+
 
         if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             detectShake(sensorEvent);

@@ -45,7 +45,7 @@ public class Seleccion extends AppCompatActivity implements SensorEventListener 
             }
         });
 
-    }
+        }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {

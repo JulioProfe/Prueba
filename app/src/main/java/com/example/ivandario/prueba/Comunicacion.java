@@ -24,7 +24,7 @@ public class Comunicacion extends Observable implements Runnable {
 //    private String ip = "172.30.165.197"; // COMPU DE IVAN
 
     private String ip = "172.30.27.247";  //  MI COMPU
-x
+
 //    private String ip = "192.168.43.94";  // DATOS JULIO
 
 

@@ -2,6 +2,7 @@ package com.example.ivandario.prueba;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -11,7 +12,7 @@ import android.os.Bundle;
 
 import serial.Iniciar;
 
-public class Instrucciones extends AppCompatActivity implements SensorEventListener{
+public class Instrucciones extends AppCompatActivity implements SensorEventListener {
 
     private static final float SHAKE_THRESHOLD = 1.5f;
     private static final int SHAKE_WAIT_TIME_MS = 250;
@@ -19,6 +20,8 @@ public class Instrucciones extends AppCompatActivity implements SensorEventListe
 
     private SensorManager sensorManager;
     private Sensor acele;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

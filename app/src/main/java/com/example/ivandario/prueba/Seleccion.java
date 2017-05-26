@@ -38,8 +38,6 @@ public class Seleccion extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         if (v.getId() == shoe1.getId()) {
 
-            // MENSAJE
-
 
             // SELECCIÓN
             Select eleccion = new Select(Comunicacion.getInstance().getName(), 0);
@@ -51,7 +49,6 @@ public class Seleccion extends AppCompatActivity implements View.OnClickListener
         }
         if (v.getId() == shoe2.getId()) {
 
-            // MENSAJE
 
 
             // SELECCIÓN
@@ -63,9 +60,6 @@ public class Seleccion extends AppCompatActivity implements View.OnClickListener
             startActivity(jugarIn);
         }
         if (v.getId() == shoe3.getId()) {
-
-            // MENSAJE
-
 
             // SELECCIÓN
             Select eleccion = new Select(Comunicacion.getInstance().getName(), 2);

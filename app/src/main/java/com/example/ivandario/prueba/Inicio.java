@@ -6,6 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -21,6 +22,8 @@ public class Inicio extends AppCompatActivity implements Observer, SensorEventLi
 
     private SensorManager sensorManager;
     private Sensor acele;
+    private Vibrator v;
+    //private long[] pattern;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,11 @@ public class Inicio extends AppCompatActivity implements Observer, SensorEventLi
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         acele = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+
+
 
         Comunicacion.getInstance().addObserver(this);
     }
@@ -66,8 +74,11 @@ public class Inicio extends AppCompatActivity implements Observer, SensorEventLi
             // Change background color if gForce exceeds threshold;
             // otherwise, reset the color
             if (gForce > SHAKE_THRESHOLD) {
+                long[] pattern = {0, 100, 1000, 300, 200, 100, 500, 200, 100};
+                v.vibrate(pattern, -1);
                 Intent jugarIn = new Intent(Inicio.this, Registro.class);
                 startActivity(jugarIn);
+
             }
         }
     }
@@ -76,12 +87,14 @@ public class Inicio extends AppCompatActivity implements Observer, SensorEventLi
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, acele, SensorManager.SENSOR_DELAY_GAME);
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
+        //v.cancel();
     }
 
 

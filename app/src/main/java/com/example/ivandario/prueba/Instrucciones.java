@@ -9,7 +9,7 @@ import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Instrucciones extends AppCompatActivity implements SensorEventListener {
+public class Instrucciones extends AppCompatActivity implements SensorEventListener{
 
     private static final float SHAKE_THRESHOLD = 1.5f;
     private static final int SHAKE_WAIT_TIME_MS = 250;

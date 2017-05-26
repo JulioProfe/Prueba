@@ -30,9 +30,14 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        //float x = sensorEvent.values[0];
+        float x = sensorEvent.values[0];
         xd.setText(Float.toString(sensorEvent.values[0]));
-        detectRotation(sensorEvent);
+        //detectRotation(sensorEvent);
+        if (Math.abs(sensorEvent.values[0]) > 4 && Math.abs(sensorEvent.values[0]) < 2){
+            Comunicacion.getInstance().enviar("izquierda");
+        } else if (Math.abs(sensorEvent.values[0]) < -2 && Math.abs(sensorEvent.values[0]) > -5) {
+            Comunicacion.getInstance().enviar("derecha");
+        }
     }
 
     private void detectRotation(SensorEvent event) {
@@ -41,7 +46,7 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
         if ((now - mRotationTime) > ROTATION_WAIT_TIME_MS) {
             mRotationTime = now;
 
-            if (Math.abs(event.values[0]) > 0) {
+            if ( Math.abs(event.values[0])> 0) {
                 Comunicacion.getInstance().enviar("izquierda");
             } else if (Math.abs(event.values[0]) < 0){
                 Comunicacion.getInstance().enviar("derecha");

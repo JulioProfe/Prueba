@@ -36,8 +36,10 @@ public class Registro extends AppCompatActivity implements SensorEventListener {
 
         acele = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        name = (EditText) findViewById(R.id.userName);
+        type = Typeface.createFromAsset(getAssets(), "fonts/FuturaExtraBoldIta.ttf");
 
+        name = (EditText) findViewById(R.id.userName);
+        name.setTypeface(type);
     }
 
     @Override

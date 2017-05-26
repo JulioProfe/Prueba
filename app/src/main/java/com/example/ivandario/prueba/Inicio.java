@@ -74,7 +74,7 @@ public class Inicio extends AppCompatActivity implements Observer, SensorEventLi
             // Change background color if gForce exceeds threshold;
             // otherwise, reset the color
             if (gForce > SHAKE_THRESHOLD) {
-                long[] pattern = {0, 100, 1000, 300, 200, 100, 500, 200, 100};
+                long[] pattern = {2000, 2000};
                 v.vibrate(pattern, -1);
                 Intent jugarIn = new Intent(Inicio.this, Registro.class);
                 startActivity(jugarIn);

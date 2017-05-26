@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ public class Registro extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor acele;
     private EditText name;
+    private Vibrator v;
 
 
     private Typeface type;
@@ -36,6 +38,8 @@ public class Registro extends AppCompatActivity implements SensorEventListener {
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         acele = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         type = Typeface.createFromAsset(getAssets(), "fonts/FuturaExtraBoldIta.ttf");
 
@@ -73,6 +77,8 @@ public class Registro extends AppCompatActivity implements SensorEventListener {
             if (gForce > SHAKE_THRESHOLD) {
 
                 if (!nameUser.isEmpty() && nameUser!=null) {
+                    long[] pattern = {2000, 2000};
+                    v.vibrate(pattern, -1);
                     Registrar registro = new Registrar(nameUser);
                     Comunicacion.getInstance().setName(nameUser);
                     Comunicacion.getInstance().enviar(registro);

@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -20,7 +21,7 @@ public class Instrucciones extends AppCompatActivity implements SensorEventListe
 
     private SensorManager sensorManager;
     private Sensor acele;
-
+    private Vibrator v;
 
 
     @Override
@@ -32,6 +33,7 @@ public class Instrucciones extends AppCompatActivity implements SensorEventListe
 
         acele = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     @Override
@@ -60,6 +62,8 @@ public class Instrucciones extends AppCompatActivity implements SensorEventListe
             // Change background color if gForce exceeds threshold;
             // otherwise, reset the color
             if (gForce > SHAKE_THRESHOLD) {
+                long[] pattern = {2000, 2000};
+                v.vibrate(pattern, -1);
                 Iniciar temp = new Iniciar(Comunicacion.getInstance().getName(), true);
                 Comunicacion.getInstance().enviar(temp);
                 Intent jugarIn = new Intent(Instrucciones.this, Interaccion.class);

@@ -9,6 +9,8 @@ import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import serial.Iniciar;
+
 public class Instrucciones extends AppCompatActivity implements SensorEventListener{
 
     private static final float SHAKE_THRESHOLD = 1.5f;
@@ -55,6 +57,8 @@ public class Instrucciones extends AppCompatActivity implements SensorEventListe
             // Change background color if gForce exceeds threshold;
             // otherwise, reset the color
             if (gForce > SHAKE_THRESHOLD) {
+                Iniciar temp = new Iniciar(Comunicacion.getInstance().getName(), true);
+                Comunicacion.getInstance().enviar(temp);
                 Intent jugarIn = new Intent(Instrucciones.this, Interaccion.class);
                 startActivity(jugarIn);
             }

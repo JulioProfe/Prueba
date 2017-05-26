@@ -14,10 +14,6 @@ import java.util.Observer;
 
 public class Interaccion extends AppCompatActivity implements SensorEventListener, Observer{
     private SensorManager mSensor;
-    private TextView xd, yd, zd;
-    private static final float ROTATION_THRESHOLD = 2.0f;
-    private static final int ROTATION_WAIT_TIME_MS = 100;
-    private long mRotationTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +44,7 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
     }
 
     public static void setImage(String shoeNumber){
-
+//        if ()
     }
 
     @Override

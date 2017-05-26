@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -15,16 +16,22 @@ import java.util.Observable;
  * Created by IvanDario on 5/23/2017.
  */
 
-public class Comunicacion extends Observable implements Runnable{
-    private static final String TAG= "Comunicacion";
+public class Comunicacion extends Observable implements Runnable {
+    private static final String TAG = "Comunicacion";
     private static Comunicacion ref;
     private Socket s;
     private boolean corriendo;
-    private String ip= "172.30.165.197";
+//    private String ip = "172.30.165.197"; // COMPU DE IVAN
+
+    private String ip = "172.30.27.247";  //  MI COMPU
+
+
     private int puerto = 5000;
     private boolean conectando;
-    private  boolean reset;
+    private boolean reset;
     private boolean notificoError;
+
+    private String nombre=null;
 
     private Comunicacion(){
         s=null;
@@ -176,12 +183,12 @@ public class Comunicacion extends Observable implements Runnable{
         }
     }
 
-    public void enviar(String msn) {
+    public void enviar(Object o) {
         if(s != null) {
             try {
-                DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-                dos.writeUTF(msn);
-                dos.flush();
+                ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+                out.writeObject(o);
+                out.flush();
             } catch (IOException e) {
                 //e.printStackTrace();
                 Log.d(TAG, "[ ERROR AL ENVIAR ]");
@@ -199,6 +206,13 @@ public class Comunicacion extends Observable implements Runnable{
         notificoError = false;
     }
 
+    public void setName(String name){
+        nombre=name;
+    }
+
+    public String getName(){
+        return nombre;
+    }
     public void setIp(String ip) {
         this.ip = ip;
     }

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import serial.Registrar;
 
 public class Registro extends AppCompatActivity implements SensorEventListener {
 
@@ -72,9 +73,12 @@ public class Registro extends AppCompatActivity implements SensorEventListener {
             if (gForce > SHAKE_THRESHOLD) {
 
                 if (!nameUser.isEmpty() && nameUser!=null) {
+                    Registrar registro = new Registrar(nameUser);
+                    Comunicacion.getInstance().enviar(registro);
                     Intent jugarIn = new Intent(Registro.this, Seleccion.class);
                     startActivity(jugarIn);
-                    Comunicacion.getInstance().enviar(name.getText().toString());
+
+
                 } else {
                     aviso("Ingresa un nombre para jugar");
                 }

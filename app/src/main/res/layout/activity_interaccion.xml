@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_interaccion"
-    android:background="@drawable/interac"
+    android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -19,4 +19,20 @@
         android:layout_marginLeft="59dp"
         android:layout_marginTop="69dp"
         android:id="@+id/x" />
+
+    <TextView
+        android:id="@+id/y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/x"
+        android:layout_below="@+id/x"
+        android:layout_marginTop="37dp" />
+
+    <TextView
+        android:id="@+id/z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/y"
+        android:layout_below="@+id/y"
+        android:layout_marginTop="42dp" />
 </RelativeLayout>

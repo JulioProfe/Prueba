@@ -14,7 +14,7 @@ import java.util.Observer;
 
 public class Interaccion extends AppCompatActivity implements SensorEventListener, Observer{
     private SensorManager mSensor;
-    private TextView xd;
+    private TextView xd, yd, zd;
     private static final float ROTATION_THRESHOLD = 2.0f;
     private static final int ROTATION_WAIT_TIME_MS = 100;
     private long mRotationTime = 0;
@@ -26,38 +26,27 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
 
         mSensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         xd = (TextView) findViewById(R.id.x);
+        yd = (TextView) findViewById(R.id.y);
+        zd = (TextView) findViewById(R.id.z);
+
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         float x = sensorEvent.values[0];
-        xd.setText(Float.toString(sensorEvent.values[0]));
-        //detectRotation(sensorEvent);
-        if (Math.abs(sensorEvent.values[0]) > 4 && Math.abs(sensorEvent.values[0]) < 2){
+
+        if (x <= 3) {
             Comunicacion.getInstance().enviar("izquierda");
-        } else if (Math.abs(sensorEvent.values[0]) < -2 && Math.abs(sensorEvent.values[0]) > -5) {
+        } else if (x > -2.5f) {
             Comunicacion.getInstance().enviar("derecha");
         }
-    }
 
-    private void detectRotation(SensorEvent event) {
-        long now = System.currentTimeMillis();
-
-        if ((now - mRotationTime) > ROTATION_WAIT_TIME_MS) {
-            mRotationTime = now;
-
-            if ( Math.abs(event.values[0])> 0) {
-                Comunicacion.getInstance().enviar("izquierda");
-            } else if (Math.abs(event.values[0]) < 0){
-                Comunicacion.getInstance().enviar("derecha");
-            }
-        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mSensor.registerListener(this, mSensor.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_NORMAL);
+        mSensor.registerListener(this, mSensor.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override

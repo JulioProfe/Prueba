@@ -74,6 +74,7 @@ public class Registro extends AppCompatActivity implements SensorEventListener {
 
                 if (!nameUser.isEmpty() && nameUser!=null) {
                     Registrar registro = new Registrar(nameUser);
+                    Comunicacion.getInstance().setName(nameUser);
                     Comunicacion.getInstance().enviar(registro);
                     Intent jugarIn = new Intent(Registro.this, Seleccion.class);
                     startActivity(jugarIn);

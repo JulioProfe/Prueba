@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import serial.Registrar;
+import serial.Select;
+
 
 public class Seleccion extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,7 +42,8 @@ public class Seleccion extends AppCompatActivity implements View.OnClickListener
 
 
             // SELECCIÓN
-
+            Select eleccion = new Select(Comunicacion.getInstance().getName(), 0);
+            Comunicacion.getInstance().enviar(eleccion);
 
             // CAMBIO DE INTENTO
             Intent jugarIn = new Intent(Seleccion.this, Instrucciones.class);
@@ -51,7 +55,8 @@ public class Seleccion extends AppCompatActivity implements View.OnClickListener
 
 
             // SELECCIÓN
-
+            Select eleccion = new Select(Comunicacion.getInstance().getName(), 1);
+            Comunicacion.getInstance().enviar(eleccion);
 
             // CAMBIO DE INTENTO
             Intent jugarIn = new Intent(Seleccion.this, Instrucciones.class);
@@ -63,7 +68,8 @@ public class Seleccion extends AppCompatActivity implements View.OnClickListener
 
 
             // SELECCIÓN
-
+            Select eleccion = new Select(Comunicacion.getInstance().getName(), 2);
+            Comunicacion.getInstance().enviar(eleccion);
 
             // CAMBIO DE INTENTO
             Intent jugarIn = new Intent(Seleccion.this, Instrucciones.class);

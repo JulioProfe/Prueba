@@ -21,9 +21,9 @@ public class Seleccion extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccion);
 
-        shoe1= (ImageButton) findViewById(R.id.shoe1);
-        shoe2= (ImageButton) findViewById(R.id.shoe2);
-        shoe3= (ImageButton) findViewById(R.id.shoe3);
+        shoe1 = (ImageButton) findViewById(R.id.shoe1);
+        shoe2 = (ImageButton) findViewById(R.id.shoe2);
+        shoe3 = (ImageButton) findViewById(R.id.shoe3);
 
         shoe1.setOnClickListener(this);
         shoe2.setOnClickListener(this);
@@ -31,12 +31,43 @@ public class Seleccion extends AppCompatActivity implements View.OnClickListener
     }
 
 
-
     @Override
     public void onClick(View v) {
+        if (v.getId() == shoe1.getId()) {
 
-        //Intent jugarIn = new Intent(Seleccion.this, Instrucciones.class);
-//        startActivity(jugarIn);
+            // MENSAJE
 
+
+            // SELECCIÓN
+
+
+            // CAMBIO DE INTENTO
+            Intent jugarIn = new Intent(Seleccion.this, Instrucciones.class);
+            startActivity(jugarIn);
+        }
+        if (v.getId() == shoe2.getId()) {
+
+            // MENSAJE
+
+
+            // SELECCIÓN
+
+
+            // CAMBIO DE INTENTO
+            Intent jugarIn = new Intent(Seleccion.this, Instrucciones.class);
+            startActivity(jugarIn);
+        }
+        if (v.getId() == shoe3.getId()) {
+
+            // MENSAJE
+
+
+            // SELECCIÓN
+
+
+            // CAMBIO DE INTENTO
+            Intent jugarIn = new Intent(Seleccion.this, Instrucciones.class);
+            startActivity(jugarIn);
+        }
     }
 }

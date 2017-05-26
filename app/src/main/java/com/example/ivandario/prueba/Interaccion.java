@@ -35,9 +35,9 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
     public void onSensorChanged(SensorEvent sensorEvent) {
         float x = sensorEvent.values[0];
 
-        if (x <= 3) {
+        if (x <= 5) {
             Comunicacion.getInstance().enviar("izquierda");
-        } else if (x > -2.5f) {
+        } else if (x >= -5) {
             Comunicacion.getInstance().enviar("derecha");
         }
 

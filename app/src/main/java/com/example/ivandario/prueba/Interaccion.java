@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.Observable;
 import java.util.Observer;
 
+import serial.Posicion;
+
 public class Interaccion extends AppCompatActivity implements SensorEventListener, Observer{
     private SensorManager mSensor;
 
@@ -28,12 +30,8 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         float x = sensorEvent.values[0];
-
-        if (x <= 5) {
-            Comunicacion.getInstance().enviar("derecha");
-        } else if (x >= -5) {
-            Comunicacion.getInstance().enviar("izquierda");
-        }
+        Posicion tempP= new Posicion(Comunicacion.getInstance().getName(), x);
+        Comunicacion.getInstance().enviar(tempP);
 
     }
 

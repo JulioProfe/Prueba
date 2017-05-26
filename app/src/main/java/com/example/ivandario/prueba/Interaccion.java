@@ -25,9 +25,7 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
         setContentView(R.layout.activity_interaccion);
 
         mSensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        xd = (TextView) findViewById(R.id.x);
-        yd = (TextView) findViewById(R.id.y);
-        zd = (TextView) findViewById(R.id.z);
+
 
     }
 
@@ -36,9 +34,9 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
         float x = sensorEvent.values[0];
 
         if (x <= 5) {
-            Comunicacion.getInstance().enviar("izquierda");
-        } else if (x >= -5) {
             Comunicacion.getInstance().enviar("derecha");
+        } else if (x >= -5) {
+            Comunicacion.getInstance().enviar("izquierda");
         }
 
     }
@@ -47,6 +45,10 @@ public class Interaccion extends AppCompatActivity implements SensorEventListene
     protected void onResume() {
         super.onResume();
         mSensor.registerListener(this, mSensor.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    public static void setImage(String shoeNumber){
+
     }
 
     @Override
